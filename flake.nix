@@ -25,6 +25,10 @@
               inherit inputs pkgs;
               modules = [
                 {
+                  packages = with pkgs; [
+                    go-ethereum
+                  ];
+
                   languages.go = {
                     enable = true;
                   };

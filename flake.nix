@@ -27,6 +27,7 @@
                 {
                   packages = with pkgs; [
                     go-ethereum
+                    pkgsite
                   ];
 
                   languages.go = {

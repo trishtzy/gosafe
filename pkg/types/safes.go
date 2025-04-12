@@ -18,8 +18,11 @@ const (
 
 // Safe interacts with Safe contract
 type Safe struct {
-	Contract  *contracts.Safe
-	EthClient *ethclient.Client
+	Contract    *contracts.Safe
+	EthClient   *ethclient.Client
+	SafeAddress string
+	SafeVersion string
+	ChainId     *big.Int
 }
 
 // SafeWallet represents a Safe wallet

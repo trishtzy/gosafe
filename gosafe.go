@@ -4,7 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/trishtzy/gosafe/internal/abi/contracts"
-	"github.com/trishtzy/gosafe/pkg/types"
+	"github.com/trishtzy/gosafe/types"
 )
 
 // New creates a new gosafe client

@@ -1,27 +1,23 @@
 package types
 
-import "math/big"
+import (
+	"math/big"
 
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/trishtzy/gosafe/internal/abi/contracts"
+)
+
+// Safe interacts with Safe contract
 type Safe struct {
-	Address                    AddressInfo   `json:"address"`
-	ChainId                    *big.Int      `json:"chainId"`
-	Nonce                      *big.Int      `json:"nonce"`
-	Threshold                  int           `json:"threshold"`
-	Owners                     []AddressInfo `json:"owners"`
-	Implementation             AddressInfo   `json:"implementation"`
-	Modules                    []AddressInfo `json:"modules"`
-	FallbackHandler            AddressInfo   `json:"fallbackHandler"`
-	Guard                      AddressInfo   `json:"guard"`
-	Version                    string        `json:"version"`
-	ImplementationVersionState string        `json:"implementationVersionState"`
-	CollectiblesTag            string        `json:"collectiblesTag"`
-	TxQueuedTag                string        `json:"txQueuedTag"`
-	TxHistoryTag               string        `json:"txHistoryTag"`
-	MessagesTag                string        `json:"messagesTag"`
+	Contract  *contracts.Safe
+	EthClient *ethclient.Client
 }
 
-type AddressInfo struct {
-	Value   string `json:"value"`
-	Name    string `json:"name"`
-	LogoUri string `json:"logoUri"`
+// SafeWallet represents a Safe wallet
+type SafeWallet struct {
+	Address common.Address   `json:"address"`
+	ChainId *big.Int         `json:"chainId"`
+	Nonce   *big.Int         `json:"nonce"`
+	Owners  []common.Address `json:"owners"`
 }

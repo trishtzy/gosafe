@@ -35,32 +35,28 @@ type SafeWallet struct {
 
 // SafeTransaction represents a Safe transaction with its data and signatures
 type SafeTransaction struct {
-	Data       SafeTransactionData       `json:"data"`
-	Signatures map[string]*SafeSignature `json:"signatures"`
+	SafeAddress        common.Address      `json:"safeAddress"`
+	ChainID            *big.Int            `json:"chainId"`
+	Data               SafeTransactionData `json:"data"`
+	Signatures         [][]byte
+	ContractSignatures [][]byte // Stores the actual contract signature data
 }
 
 // MetaTransactionData represents the base transaction data
 type MetaTransactionData struct {
-	To        string        `json:"to"`
-	Value     string        `json:"value"`
-	Data      string        `json:"data"`
-	Operation OperationType `json:"operation,omitempty"`
+	To        common.Address `json:"to"`
+	Value     *big.Int       `json:"value"`
+	Data      []byte         `json:"data"`
+	Operation OperationType  `json:"operation,omitempty"`
 }
 
 // SafeTransactionData represents a complete Safe transaction data structure
 type SafeTransactionData struct {
 	MetaTransactionData
-	SafeTxGas      string `json:"safeTxGas"`
-	BaseGas        string `json:"baseGas"`
-	GasPrice       string `json:"gasPrice"`
-	GasToken       string `json:"gasToken"`
-	RefundReceiver string `json:"refundReceiver"`
-	Nonce          uint64 `json:"nonce"`
-}
-
-// SafeSignature represents a signature for a Safe transaction
-type SafeSignature struct {
-	Signer              string `json:"signer"`
-	Data                string `json:"data"`
-	IsContractSignature bool   `json:"isContractSignature"`
+	SafeTxGas      *big.Int       `json:"safeTxGas"`
+	BaseGas        *big.Int       `json:"baseGas"`
+	GasPrice       *big.Int       `json:"gasPrice"`
+	GasToken       common.Address `json:"gasToken"`
+	RefundReceiver common.Address `json:"refundReceiver"`
+	Nonce          *big.Int       `json:"nonce"`
 }

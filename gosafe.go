@@ -19,8 +19,21 @@ func New(config Config) (*types.Safe, error) {
 		return nil, err
 	}
 
+	chainId, err := safe.SafeCaller.GetChainId(nil)
+	if err != nil {
+		return nil, err
+	}
+
+	safeVersion, err := safe.SafeCaller.VERSION(nil)
+	if err != nil {
+		return nil, err
+	}
+
 	return &types.Safe{
-		Contract:  safe,
-		EthClient: ethClient,
+		Contract:    safe,
+		EthClient:   ethClient,
+		SafeAddress: config.SafeAddress,
+		SafeVersion: safeVersion,
+		ChainId:     chainId,
 	}, nil
 }
